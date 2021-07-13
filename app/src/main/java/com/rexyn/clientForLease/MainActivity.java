@@ -8,8 +8,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.esign.esignsdk.EsignSdk;
-import com.esign.esignsdk.data.AuthEvent;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -60,10 +58,8 @@ public class MainActivity extends Activity {
             }
         });
 
-        editText.setText("https://smlt.esign.cn/6kJQxr5FAE22");
 
 
-        EsignSdk.getInstance().init(key,license);
 
         checkPermission();
     }
@@ -76,11 +72,6 @@ public class MainActivity extends Activity {
      res代表刷脸结果对应的值：fail,success
      fail:失败 success:成功
      */
-    @Subscribe
-    public void processResult(AuthEvent event) {
-        //添加实名/意愿/签署完成之后的逻辑
-        Toast.makeText(this, event.result, Toast.LENGTH_SHORT).show();
-    }
 
 
 
@@ -91,7 +82,6 @@ public class MainActivity extends Activity {
 
     private void goSign() {
         String url = editText.getText().toString();
-        EsignSdk.getInstance().startH5Activity(this,url);
     }
 
     @Override
